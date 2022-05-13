@@ -1,19 +1,43 @@
-const number0fFilms = +prompt("Сколько фильмов вы уже посмотрели?", "");         //создана константа с вопросом user's
+'use strict';
+
+const numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
 
 const personalMovieDB = {
-    count: number0fFilms,       //сюда будет складываться ответ пользователя
-    movies: {},                 
+    count: numberOfFilms,
+    movies: {},
     actors: {},
     genres: [],
     privat: false
 };
 
-const a = prompt("Один из последних просмотренных фильмов", ""),   //создал еще несколько вопросов пользователю
-      b = +prompt("на сколько оцените его?", ""),
-      c = prompt("Один из последних просмотренных фильмов", ""),   
-      d = +prompt("на сколько оцените его?", "");                 
+for (let i = 0; i < 2; i++) {
+    const a = prompt('Один из последних просмотренных фильмов', ''),
+          b = prompt('На сколько оцените его?', '');
 
-personalMovieDB.movies[a] = b;            //указал, чтобы ответы констант складывались в movies
-personalMovieDB.movies[c] = d;
+    if (a != null && b != null && a != '' && b != '' && a.length < 50 && b.length < 50) {
+        personalMovieDB.movies[a] = b; 
+        console.log('right');
+    } else {
+        console.log('wrong');
+        i--;
+    }
+}
 
-console.log(personalMovieDB);    //вывел в консоль для проверки
+
+if (personalMovieDB.count < 10) {
+    alert('просмотрено довольно мало фильмов');
+    console.log('просмотрено довольно мало фильмов');
+} else if (personalMovieDB.count < 30 && personalMovieDB.count >= 10) {
+    alert('вы классический зритель');
+    console.log('просмотрено довольно много фильмов');
+} else if (personalMovieDB.count >= 30) {
+    alert('вы киноман');
+    console.log('вы киноман');
+} else {
+    alert('произошла ошибка');
+}
+
+
+
+
+console.log(personalMovieDB);
